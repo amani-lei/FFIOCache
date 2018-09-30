@@ -8,9 +8,9 @@ A cache item for ffmpeg.
   
   * 3.Modify your code of ffmpeg and rebuild it
 
-    open libavformat/hls.c
-    find open_url_keepalive in the function open_url()
-    Add a condition in the front row,  <  !(s->flags & AVFMT_FLAG_CUSTOM_IO) > 
+    open libavformat/hls.c <br>
+    find open_url_keepalive in the function open_url() <br>
+    Add a condition in the front row,  <  !(s->flags & AVFMT_FLAG_CUSTOM_IO) >  <br>
   
   * 4.Replace function.
     
