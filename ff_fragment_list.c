@@ -3,7 +3,7 @@
 //  ffmpeg_demo
 //
 //  Created by helei on 2018/9/7.
-//  Copyright © 2018年 何磊. All rights reserved.
+//  Copyright © 2018年 何磊 <helei0908@hotmail.com>. All rights reserved.
 //
 
 #include "ff_fragment_list.h"
@@ -287,27 +287,9 @@ int fff_list_insert_node(FFFragmentList * list, FFFragmentNode * node, FFFragmen
 }
 
 const FFFragmentNode * fff_list_peek(FFFragmentList * list, int node_index){
-    if(list == NULL){
-        LOGE("%s:input list is NULL\n", __FUNCTION__);
-        return NULL;
-    }
-    
-    if(list->list_head == NULL || list->nb_nodes <= 0){
-        LOGW("%s:list is empty\n", __FUNCTION__);
-        return NULL;
-    }
-    int i = 0;
-    FFFragmentNode * node = list->list_head;
-    FFFragmentNode * ret_node = NULL;
-    while(node){
-        if(i == node_index){
-            ret_node = node;
-            break;
-        }
-        node = node->next;
-        i ++;
-    }
-    return ret_node;
+    FFFragmentNode * node = NULL;
+    fff_list_find_node_index(list, node_index, &node);
+    return node;
 }
 
 int fff_list_remove(FFFragmentList * list, fft_t begin, fft_t end){
@@ -608,31 +590,28 @@ int fff_list_find_node(FFFragmentList * list, fft_t point, int flag, FFFragmentN
     return ret;
 }
 int fff_list_find_node_index(FFFragmentList * list, int index, FFFragmentNode ** out_node){
-    if(list == NULL || index < 0){
-        LOGE("%s:input list is NULL or index < 0 \n", __FUNCTION__);
+    if(list == NULL){
+        LOGE("%s:input list is NULL\n", __FUNCTION__);
         return FFF_FIND_NO;
     }
-    if(out_node == NULL ){
-        LOGE("%s:out_node is\n", __FUNCTION__);
-    }
-    if(list->nb_nodes == 0 || list->list_head == NULL){
-        LOGE("%s:input list is empty\n", __FUNCTION__);
+    
+    if(list->list_head == NULL || list->nb_nodes <= 0){
+        LOGW("%s:list is empty\n", __FUNCTION__);
         return FFF_FIND_NO;
     }
-    FFFragmentNode * node = list->list_head, * find_node = NULL;
     int i = 0;
+    FFFragmentNode * node = list->list_head;
+    FFFragmentNode * ret_node = NULL;
     while(node){
         if(i == index){
-            find_node = node;
+            ret_node = node;
             break;
         }
         node = node->next;
+        i ++;
     }
-    if(find_node){
-        *out_node = find_node;
-        return FFF_FIND_OK;
-    }
-    return FFF_FIND_NO;
+    *out_node = ret_node;
+    return (ret_node != NULL) ? FFF_FIND_OK : FFF_FIND_NO;
 }
 
 const FFFragmentNode * fff_list_range_node(FFFragmentList * list, fft_t begin, fft_t end){

@@ -1,9 +1,8 @@
 //
 //  ff_remuxer.h
-//  IJKMediaFramework
 //
 //  Created by helei on 2017/12/21.
-//  Copyright © 2017年. All rights reserved.
+//  Copyright © 2017年 何磊 <helei0908@hotmail.com>. All rights reserved.
 //
 
 #ifndef ff_remuxer_h

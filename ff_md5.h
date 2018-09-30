@@ -1,9 +1,8 @@
 //
 //  ff_md5.h
-//  IJKMediaFramework
 //
 //  Created by helei on 2018/4/11.
-//  Copyright © 2018年 bilibili. All rights reserved.
+//  Copyright 何磊 <helei0908@hotmail.com>. All rights reserved.
 //
 
 #ifndef ff_md5_h

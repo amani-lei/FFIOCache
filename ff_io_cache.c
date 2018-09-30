@@ -3,7 +3,7 @@
 //  ffmpeg_demo
 //
 //  Created by helei on 2018/8/9.
-//  Copyright © 2018年 何磊. All rights reserved.
+//  Copyright © 2018年 何磊 <helei0908@hotmail.com>. All rights reserved.
 //
 
 #include "ff_io_cache.h"
@@ -162,7 +162,7 @@ int ff_io_cache_on_open(struct AVFormatContext *s, AVIOContext **pb, const char 
     LOGD("%s:on open url\"%s\"\n", __FUNCTION__, url);
     FFCacheContext * cache_ctx = (FFCacheContext*) s->opaque;
     //创建ffmpeg的回源io
-    ff_io_cache_reset_current(cache_ctx);
+    ff_io_cache_uninstall_current(cache_ctx);
     
     AVIOContext * agent_ic = avio_alloc_context(cache_ctx->io_buffer, cache_ctx->io_buffer_size, 0, cache_ctx, ff_io_cache_read_packet, NULL, ff_io_cache_read_seek);
     *pb = agent_ic;
@@ -183,7 +183,7 @@ int ff_io_cache_on_open(struct AVFormatContext *s, AVIOContext **pb, const char 
 
 void ff_io_cache_on_close(struct AVFormatContext *s, struct AVIOContext *pb){
     FFCacheContext * cache_ctx = (FFCacheContext*)s->opaque;
-    ff_io_cache_reset_current(cache_ctx);
+    ff_io_cache_uninstall_current(cache_ctx);
     s->pb = NULL;
 }
 
@@ -470,7 +470,7 @@ int64_t ff_io_cache_write_seek(FFCacheContext * ctx, int64_t seek_pos){
     return fff_cache_write_seek(ctx->cache_file_ctx, seek_pos);
 }
 
-int ff_io_cache_reset_current(FFCacheContext * ctx){
+int ff_io_cache_uninstall_current(FFCacheContext * ctx){
     if(ctx->cache_file_ctx){
         fff_cache_free(&ctx->cache_file_ctx);
     }

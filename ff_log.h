@@ -3,7 +3,7 @@
 //  ffmpeg_demo
 //
 //  Created by helei on 2018/3/30.
-//  Copyright © 2018年 何磊. All rights reserved.
+//  Copyright © 2018年 何磊 <helei0908@hotmail.com>. All rights reserved.
 //
 #ifndef FF_LOG_H
 #define FF_LOG_H
