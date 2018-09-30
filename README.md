@@ -11,7 +11,7 @@ A cache item for ffmpeg.
     open libavformat/hls.c <br>
     find open_url_keepalive in the function open_url() <br>
     Add a condition in the front row:<br/>
-   	if(!(s->flags & AVFMT_FLAG_CUSTOM_IO && ..... )  <br>
+   	if(!(s->flags & AVFMT_FLAG_CUSTOM_IO && ..... )  //if custom is used,don`t keepalive <br>
   
   * 4.Replace function.
     
@@ -54,5 +54,6 @@ A cache item for ffmpeg.
 	Don`t set AVFormatContext->opaque
 	Don`t set AVFormatContext->io_open
 	Don`t set AVFormatContext->io_close
+	Don`t remove AVFMT_FLAG_CUSTOM_IO flag of AVFOrmatContext->flsg
 # Contact
 	helei0908@hotmail.com
