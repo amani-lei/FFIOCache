@@ -54,6 +54,6 @@ A cache item for ffmpeg.
 	Don`t set AVFormatContext->opaque
 	Don`t set AVFormatContext->io_open
 	Don`t set AVFormatContext->io_close
-	Don`t remove AVFMT_FLAG_CUSTOM_IO flag of AVFOrmatContext->flsg
+	Don`t remove AVFMT_FLAG_CUSTOM_IO flag of AVFOrmatContext->flags
 # Contact
 	helei0908@hotmail.com
