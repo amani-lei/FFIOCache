@@ -44,3 +44,14 @@ A cache item for ffmpeg.
     ff_io_cache_format_close_input(fc);
     ```
     ---
+
+  * 5.Other
+
+  	Must call ff_io_cache_global_set_path before any
+# Prompt
+
+	Don`t set AVFormatContext->opaque
+	Don`t set AVFormatContext->io_open
+	Don`t set AVFormatContext->io_close
+# Contact
+	helei0908@hotmail.com
